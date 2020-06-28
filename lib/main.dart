@@ -3,13 +3,9 @@ import 'dart:async';
 import 'package:connectivity/connectivity.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:news/Widgets/loginPage.dart';
 import 'package:news/Widgets/welocmePage.dart';
 import 'package:news/bloc/authentication_bloc.dart';
 import 'package:news/bloc/connectivity_bloc.dart';
-import 'package:news/globals/blocks.dart';
-import 'package:news/service/connection_status.dart';
 
 void main() {
   runApp(MyApp());
@@ -25,7 +21,6 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
   final ConnectivityBloc connectivityBloc = ConnectivityBloc();
 
   StreamSubscription _subscription;
-  bool _connected = true;
 
   @override
   Widget build(BuildContext context) {

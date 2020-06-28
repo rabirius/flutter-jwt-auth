@@ -2,9 +2,7 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:flutter/material.dart';
 import 'package:news/Exceptions/exceptions.dart';
-import 'package:news/globals/storage.dart';
 import 'package:news/globals/tokens.dart';
 import 'package:news/service/auth_service.dart';
 

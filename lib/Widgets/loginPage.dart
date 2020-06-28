@@ -1,14 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
 import 'package:google_fonts/google_fonts.dart';
-import 'package:news/Exceptions/exceptions.dart';
 import 'package:news/Widgets/bezierContainer.dart';
 import 'package:news/Widgets/signup.dart';
 import 'package:news/bloc/authentication_bloc.dart';
 import 'package:news/bloc/login_bloc.dart';
-import 'package:news/service/auth_service.dart';
 
 class LoginPage extends StatefulWidget {
   LoginPage({Key key, this.title}) : super(key: key);
@@ -226,7 +222,7 @@ class _LoginPageState extends State<LoginPage> {
       text: TextSpan(
           text: 'd',
           style: GoogleFonts.portLligatSans(
-            textStyle: Theme.of(context).textTheme.display1,
+            textStyle: Theme.of(context).textTheme.headline4,
             fontSize: 30,
             fontWeight: FontWeight.w700,
             color: Color(0xffe46b10),
@@ -324,21 +320,6 @@ class _LoginPageState extends State<LoginPage> {
                         _facebookButton(),
                         SizedBox(height: height * .055),
                         _createAccountLabel(),
-                        // BlocBuilder(
-                        //   bloc: loginBloc,
-                        //   builder: (context, state) {
-                        //     print(state);
-                        //     if (state is LoginError) {
-                        //       print('showing');
-                        //       SchedulerBinding.instance.addPostFrameCallback(
-                        //         (_) {
-                        //           _showMyDialog(state.errorMessage);
-                        //         },
-                        //       );
-                        //     }
-                        //     return Container();
-                        //   },
-                        // ),
                         BlocListener<LoginBloc, LoginState>(
                           listener: (context, state) {
                             if (state is LoginError) {
