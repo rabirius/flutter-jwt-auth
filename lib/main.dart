@@ -3,6 +3,8 @@ import 'dart:async';
 import 'package:connectivity/connectivity.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:news/Widgets/mainPage.dart';
+import 'package:news/Widgets/splashScreen.dart';
 import 'package:news/Widgets/welocmePage.dart';
 import 'package:news/bloc/authentication_bloc.dart';
 import 'package:news/bloc/connectivity_bloc.dart';
@@ -100,76 +102,13 @@ class _MyHomePageState extends State<MyHomePage> {
     return BlocBuilder<AuthenticationBloc, AuthenticationState>(
       builder: (context, state) {
         if (state is AuthenticationInitial) {
-          return Container(
-            decoration: BoxDecoration(color: Colors.white),
-            child: Stack(
-              children: <Widget>[
-                Center(
-                  child: Container(
-                    child: Icon(Icons.ac_unit),
-                  ),
-                ),
-                Align(
-                  alignment: Alignment.bottomCenter,
-                  child: NoConnection(),
-                )
-              ],
-            ),
-          );
+          return SplashScreen();
         }
         if (state is AuthenticationNotAuhtenticated) {
           return WelcomePage();
         }
         return MainPage();
       },
-    );
-  }
-}
-
-class NoConnection extends StatelessWidget {
-  const NoConnection({
-    Key key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return BlocBuilder<ConnectivityBloc, ConnectivityState>(
-      builder: (context, state) {
-        if (state is ConnectivityStatus) {
-          if (!state.isConnected) {
-            return Container(
-              // decoration: BoxDecoration(color: Colors.red),
-              child: SafeArea(
-                child: Text("Can't Connect to Internet. Retry.",
-                    textAlign: TextAlign.center,
-                    style: Theme.of(context).textTheme.overline),
-              ),
-            );
-          }
-        }
-        return Container();
-      },
-    );
-  }
-}
-
-class MainPage extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: Center(
-        child: Container(
-          child: Text(
-            'Hello There',
-          ),
-        ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.add),
-        onPressed: () {
-          BlocProvider.of<AuthenticationBloc>(context).add(UserLogOut());
-        },
-      ),
     );
   }
 }
